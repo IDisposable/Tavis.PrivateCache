@@ -13,6 +13,9 @@ namespace ClientSamples.CachingTools
         {
             _uri = uri;
             _method = method;
+            // see http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html 13.10, really should invalidate all GET keys
+            // for the same URI, so perhaps this whole key thing should be structured as yeild-returning a collection
+            // of equivalent/related keys.
             if (_method == HttpMethod.Post)  // A response to a POST can be returned to a GET method
             {
                 _method = HttpMethod.Get; 
